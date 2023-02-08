@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React, { useContext, useEffect } from 'react'
 import './dashboard.css';
 import { Dheader } from './Dheader';
