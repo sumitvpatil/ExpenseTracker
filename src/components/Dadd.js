@@ -31,7 +31,7 @@ export const Dadd = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newTransaction)
     };
-    fetch('http://localhost:4000/tracker/addTransaction',requestOptions).then((response)=>response.json()).then((res)=>console.log(res));
+    fetch('https://et-server-r0g6.onrender.com/tracker/addTransaction',requestOptions).then((response)=>response.json()).then((res)=>console.log(res));
     addTransaction(newTransaction);
   }
 

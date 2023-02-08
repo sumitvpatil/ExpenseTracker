@@ -16,7 +16,7 @@ export const Dashboard = () => {
     if(localStorage.getItem('token')===null){
       navigate('/');
     }
-    fetch('http://localhost:4000/tracker/getTransaction/7').then((response)=>response.json()).then((res)=>{
+    fetch('https://et-server-r0g6.onrender.com/tracker/getTransaction/7').then((response)=>response.json()).then((res)=>{
       listTransaction(res.transactions);
     })
   },[])

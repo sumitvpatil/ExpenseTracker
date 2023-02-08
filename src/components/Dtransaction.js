@@ -10,7 +10,7 @@ export const Dtransaction = ({transaction}) => {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     };
-    fetch('http://localhost:4000/tracker/delete/'+id,requestOptions).then((response)=>response.json()).then((res)=>console.log(res));
+    fetch('https://et-server-r0g6.onrender.com/tracker/delete/'+id,requestOptions).then((response)=>response.json()).then((res)=>console.log(res));
   }
   return (
     <li className={transaction.amount<0?'minus':'plus'}>
