@@ -11,12 +11,12 @@ import { useNavigate } from 'react-router-dom';
 export const Dashboard = () => {
   const navigate = useNavigate();
   const {listTransaction} = useContext(GlobalContext);
-
+  const name = localStorage.getItem('name');
   useEffect(()=>{
     if(localStorage.getItem('token')===null){
       navigate('/');
     }
-    fetch('https://et-server-r0g6.onrender.com/tracker/getTransaction/7').then((response)=>response.json()).then((res)=>{
+    fetch('https://et-server-r0g6.onrender.com/tracker/getTransaction/'+name).then((response)=>response.json()).then((res)=>{
       listTransaction(res.transactions);
     })
   },[])
