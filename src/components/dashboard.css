@@ -349,4 +349,39 @@ li{
 .list::-webkit-scrollbar-thumb {
     background-color: #cdc9c9;
     border-radius: 100px;
-  }
+}
+
+@media all and (max-width:450px){
+    .balance{
+        margin: 10px 30px;
+        min-height: 50vh;
+    }
+    .transaction{
+        flex-direction: column;
+    }
+    .add{
+        margin:10px;
+        min-height: 45vh;;
+    }
+    .list{
+        margin:10px;
+        min-height: 40vh;
+    }
+    .b-logo{
+        flex:1;
+    }
+    .b-items{
+        flex:2;
+    }
+    .b-area{
+        flex-direction: column;
+    }
+    .b-income{
+        border:none;
+        border-bottom: 1px solid black;
+        padding: 10px;
+    }
+    .b-expense{
+        padding: 10px;
+    }
+}

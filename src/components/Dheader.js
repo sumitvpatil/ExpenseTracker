@@ -26,13 +26,13 @@ export const Dheader = () => {
     <>
     <div className="b-row1">
         <div className='b-logo'>
-        <h1><span className='b-box'>ET</span></h1>
-        </div>
-        <div className='b-items'>
-        <p className="b-txt">Hi {name}</p>
-        <button onClick={(e)=>{
-            btnClicked(e);
-        }} className="b-btn">Logout</button>
+          <h1><span className='b-box'>ET</span></h1>
+          </div>
+          <div className='b-items'>
+          <p className="b-txt">Hi {name}</p>
+          <button onClick={(e)=>{
+              btnClicked(e);
+          }} className="b-btn">Logout</button>
         </div>
     </div>
     <div className="b-row2">
@@ -43,18 +43,18 @@ export const Dheader = () => {
     </div>
     <div className="b-row3">
         <div className="b-area">
-        <div className="b-income">
-            <div className="i-header">
-            <p className="b-txt5">Income</p>
-            <p className="b-txt3">${income}</p>
-            </div>
-        </div>
-        <div className="b-expense">
-            <div className="e-header">
-            <p className="b-txt5">Expense</p>
-            <p className="b-txt4">${expense}</p>
-            </div>
-        </div>
+          <div className="b-income">
+              <div className="i-header">
+              <p className="b-txt5">Income</p>
+              <p className="b-txt3">${income}</p>
+              </div>
+          </div>
+          <div className="b-expense">
+              <div className="e-header">
+              <p className="b-txt5">Expense</p>
+              <p className="b-txt4">${expense}</p>
+              </div>
+          </div>
         </div>
     </div>
     </>

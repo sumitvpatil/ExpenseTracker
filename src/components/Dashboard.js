@@ -26,13 +26,9 @@ export const Dashboard = () => {
         <Dheader/>
       </div>
       <div className="transaction">
-
-
         <div className="add">
           <Dadd/>
         </div>
-
-
         <div className="list">
           <Dlist/>
         </div>
