@@ -31,8 +31,10 @@ export const Dadd = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newTransaction)
     };
-    fetch('https://et-server-r0g6.onrender.com/tracker/addTransaction',requestOptions).then((response)=>response.json()).then((res)=>console.log(res));
+    fetch('https://et-server-r0g6.onrender.com/tracker/addTransaction',requestOptions);
     addTransaction(newTransaction);
+    setText('');
+    setAmount('');
   }
 
   function Income(e){
@@ -49,7 +51,6 @@ export const Dadd = () => {
         <div className="l-header">
             <p className="b-txt5">Add Transaction</p>
           </div>
-
           <div className="t-field1">
             <div className="t-radio">
               <span>
@@ -71,7 +72,7 @@ export const Dadd = () => {
           <div className="t-btn">
             <button onClick={(e)=>{
               btnClicked(e)
-            }} className='add-btn'>Add Transaction</button>
+            }} type='submit' className='add-btn'>Add Transaction</button>
           </div>
     </>
   )

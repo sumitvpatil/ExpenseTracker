@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PuffLoader } from 'react-spinners';
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export const Register = () => {
   const [cpassword,setCpassword] = useState("");
   const [error_message1,setError1] = useState("");
   const [error_message2,setError2] = useState("");const [error_message3,setError3] = useState("");const [error_message4,setError4] = useState("");const [error_message5,setError5] = useState("");const [error_message6,setError6] = useState("");
+  const [isLoading,setIsloading]=useState(false);
   const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
   useEffect(()=>{
     localStorage.removeItem('id');
@@ -17,6 +19,7 @@ export const Register = () => {
     localStorage.removeItem('token')
   },[])
   function btnClicked(e){
+    e.preventDefault();
     if(name==="" || email==="" || contact==="" || password==="" || cpassword===""){
       setError1("Enter all Details");
       setError2("");
@@ -58,6 +61,7 @@ export const Register = () => {
       setError1("");
     }
     else{
+      setIsloading(true);
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -70,6 +74,7 @@ export const Register = () => {
         })
       };
       fetch('https://et-server-r0g6.onrender.com/tracker/register',requestOptions).then((response)=>{
+        setIsloading(false);
         const status = (response.status);
         if(status===400){
           setError1("User Already Exists");
@@ -121,40 +126,47 @@ export const Register = () => {
     }
   }
   return (
+    <>
+    {isLoading?<div className="loading">
+        <PuffLoader color="#3C91E6" />
+    </div>:<></>}
     <div className='login-container'>
-        <div className="login-box">
-            <div className="login-header">
-                <h1>REGISTER</h1>
-            </div>
-            <div className="login-fields">
-                <div className='error-box'>
-                    <p className='error-text'>&nbsp;&nbsp;{error_message1}</p>
-                </div>
-                <div className="field1">
-                  <input value={name} onChange={(e)=>{setName(e.target.value)}} className='log-field' type="text" placeholder='Fullname'/>
-                  <p className='error-text'>&nbsp;&nbsp;{error_message2}</p>
-                </div>
-                <div className="field2">
-                  <input value={email} onChange={(e)=>{setEmail(e.target.value)}} className='log-field' type="text" placeholder='Email'/>
-                  <p className='error-text'>&nbsp;&nbsp;{error_message3}</p>
-                </div>
-                <div className="field2">
-                  <input value={contact} onChange={(e)=>{setContact(e.target.value)}} className='log-field' type="text" placeholder='Contact'/>
-                  <p className='error-text'>&nbsp;&nbsp;{error_message4}</p>
-                </div>
-                <div className="field1">
-                  <input value={password} onChange={(e)=>{setPassword(e.target.value)}} className='log-field' type="password" placeholder='Password' />
-                  <p className='error-text'>&nbsp;&nbsp;{error_message5}</p>
-                </div>
-                <div className="field2">
-                  <input value={cpassword} onChange={(e)=>{setCpassword(e.target.value)}} className='log-field' type="password" placeholder='Confirm Password'/>
-                  <p className='error-text'>&nbsp;&nbsp;{error_message6}</p>
-                </div>
-                <div className='login-buttons'>
-                    <button onClick={(e)=>{btnClicked(e)}}  className="log-btn">Register</button>
-                </div>
-            </div>
-        </div>
+        <form onSubmit={btnClicked}>
+          <div className="login-box">
+              <div className="login-header">
+                  <h1>REGISTER</h1>
+              </div>
+              <div className="login-fields">
+                  <div className='error-box'>
+                      <p className='error-text'>&nbsp;&nbsp;{error_message1}</p>
+                  </div>
+                  <div className="field1">
+                    <input value={name} onChange={(e)=>{setName(e.target.value)}} className='log-field' type="text" placeholder='Fullname'/>
+                    <p className='error-text'>&nbsp;&nbsp;{error_message2}</p>
+                  </div>
+                  <div className="field2">
+                    <input value={email} onChange={(e)=>{setEmail(e.target.value)}} className='log-field' type="text" placeholder='Email'/>
+                    <p className='error-text'>&nbsp;&nbsp;{error_message3}</p>
+                  </div>
+                  <div className="field2">
+                    <input value={contact} onChange={(e)=>{setContact(e.target.value)}} className='log-field' type="text" placeholder='Contact'/>
+                    <p className='error-text'>&nbsp;&nbsp;{error_message4}</p>
+                  </div>
+                  <div className="field1">
+                    <input value={password} onChange={(e)=>{setPassword(e.target.value)}} className='log-field' type="password" placeholder='Password' />
+                    <p className='error-text'>&nbsp;&nbsp;{error_message5}</p>
+                  </div>
+                  <div className="field2">
+                    <input value={cpassword} onChange={(e)=>{setCpassword(e.target.value)}} className='log-field' type="password" placeholder='Confirm Password'/>
+                    <p className='error-text'>&nbsp;&nbsp;{error_message6}</p>
+                  </div>
+                  <div className='login-buttons'>
+                      <button type='submit'  className="log-btn">Register</button>
+                  </div>
+              </div>
+          </div>
+        </form>
     </div>
+    </>
   )
 }

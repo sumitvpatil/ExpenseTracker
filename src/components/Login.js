@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import { PuffLoader } from 'react-spinners';
 export const Login = () => {
     const navigate=useNavigate();
     useEffect(()=>{
@@ -7,12 +8,14 @@ export const Login = () => {
         localStorage.removeItem('name');
         localStorage.removeItem('token')
     },[])
+    const [isLoading,setIsloading]=useState(false);
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error_message1,setError1] = useState("");
     const [error_message2,setError2] = useState("");
     const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
-    async function btnClicked(e){
+    function btnClicked(e){
+        e.preventDefault();
         if(email==="" || password===""){
             setError1("Invalid UserName/Password");
             setError2("");
@@ -22,6 +25,7 @@ export const Login = () => {
             setError1("");
         }
         else{
+            setIsloading(true);
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -32,6 +36,7 @@ export const Login = () => {
                 })
             };
             fetch('https://et-server-r0g6.onrender.com/tracker/login',requestOptions).then((response)=>{
+                setIsloading(false);
                 const status = (response.status);
                 if(status===400){
                     setError1("Invalid Username/Password");
@@ -54,28 +59,35 @@ export const Login = () => {
     }
 
   return (
+    <>
+    {isLoading?<div className="loading">
+        <PuffLoader color="#3C91E6" />
+    </div>:<></>}
     <div className='login-container'>
-        <div className="login-box">
-            <div className="login-header">
-                <h1>LOGIN</h1>
+        <form onSubmit={btnClicked}>
+            <div className="login-box">
+                <div className="login-header">
+                    <h1>LOGIN</h1>
+                </div>
+                <div className="login-fields">
+                    <div className='error-box'>
+                        <p className='error-text'>&nbsp;&nbsp;{error_message1}</p>
+                    </div>
+                    <div className="field1">
+                        <input value={email} onChange={(e)=>{setEmail(e.target.value)}} className='log-field' type="text" placeholder='Email'/>
+                        <p className='error-text'>&nbsp;&nbsp;{error_message2}</p>
+                    </div>
+                    <div className="field2">
+                        <input value={password} onChange={(e)=>{setPassword(e.target.value)}} className='log-field' type="password" placeholder='Password' />
+                    </div>
+                    <div className='login-buttons'>
+                        <button type='submit' className="log-btn">Login</button>
+                        <Link to="/register"><button  className="log-btn">Register</button></Link>
+                    </div>
+                </div>
             </div>
-            <div className="login-fields">
-                <div className='error-box'>
-                    <p className='error-text'>&nbsp;&nbsp;{error_message1}</p>
-                </div>
-                <div className="field1">
-                    <input value={email} onChange={(e)=>{setEmail(e.target.value)}} className='log-field' type="text" placeholder='Email'/>
-                    <p className='error-text'>&nbsp;&nbsp;{error_message2}</p>
-                </div>
-                <div className="field2">
-                    <input value={password} onChange={(e)=>{setPassword(e.target.value)}} className='log-field' type="password" placeholder='Password' />
-                </div>
-                <div className='login-buttons'>
-                    <button onClick={(e)=>{btnClicked(e)}} className="log-btn">Login</button>
-                    <Link to="/register"><button  className="log-btn">Register</button></Link>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
+    </>
   )
 }
