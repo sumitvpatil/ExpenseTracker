@@ -38,7 +38,7 @@ export const Dheader = () => {
     <div className="b-row2">
         <div className="b-header">
         <p className="b-txt1">Your Balance</p>
-        <p className="b-txt2">${total}</p>
+        <p className="b-txt2">₹{total}</p>
         </div>
     </div>
     <div className="b-row3">
@@ -46,13 +46,13 @@ export const Dheader = () => {
           <div className="b-income">
               <div className="i-header">
               <p className="b-txt5">Income</p>
-              <p className="b-txt3">${income}</p>
+              <p className="b-txt3">₹{income}</p>
               </div>
           </div>
           <div className="b-expense">
               <div className="e-header">
               <p className="b-txt5">Expense</p>
-              <p className="b-txt4">${expense}</p>
+              <p className="b-txt4">₹{expense}</p>
               </div>
           </div>
         </div>
