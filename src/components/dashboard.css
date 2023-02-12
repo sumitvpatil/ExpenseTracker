@@ -361,7 +361,7 @@ li{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media all and (max-width:450px){
+@media all and (max-width:650px){
     .balance{
         margin: 10px 30px;
         min-height: 50vh;
