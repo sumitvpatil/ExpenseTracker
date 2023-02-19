@@ -8,7 +8,7 @@ const AppReducer= (state,action)=>{
         case 'ADD_TRANSACTION':
             return {
                 ...state,
-                transactions:[...state.transactions,action.payload]
+                transactions:[action.payload,...state.transactions]
             }
         case 'LIST_TRANSACTION':
             return {

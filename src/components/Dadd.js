@@ -8,21 +8,24 @@ export const Dadd = () => {
   const [text,setText] = useState('');
   const [amount,setAmount] = useState('');
   const {addTransaction} = useContext(GlobalContext);
+  const {transactions} = useContext(GlobalContext);
 
   function btnClicked(e){
+    e.preventDefault();
     var flag=1;
     if(text==='' || amount===''){
       return;
     }
-    console.log(income_radio);
-    console.log(expense_radio);
     if(expense_radio===true && income_radio===false){
       flag=-1;
     }
-    console.log(amount);
+    var temp_id=localStorage.getItem('id')*100000;
+    if(transactions.length!==0){
+      temp_id=transactions[0].id+1;
+    }
     const newTransaction={
       user_id:localStorage.getItem('id'),
-      id: Math.floor(Math.random()*100000000),
+      id: temp_id,
       details:text,
       amount:amount*flag
     }
@@ -42,38 +45,37 @@ export const Dadd = () => {
     expense_radio=false;
   }
   function Expense(){
-    console.log("E");
     income_radio=false;
     expense_radio=true;
   }
   return (
     <>
-        <div className="l-header">
+          <div className="l-header">
             <p className="b-txt5">Add Transaction</p>
           </div>
-          <div className="t-field1">
-            <div className="t-radio">
-              <span>
-                <input onClick={(e)=>Income()} defaultChecked className='r-btn1' type="radio" name='type'/>
-              </span>
-              <span>
-                <input onClick={(e)=>Expense()} className='r-btn2' type="radio" name='type'/>
-              </span>
+          <form className='addData' onSubmit={btnClicked}>
+            <div className="t-field1">
+              <div className="t-radio">
+                <span>
+                  <input onClick={(e)=>Income()} defaultChecked value={income_radio} className='r-btn1' type="radio" name='type'/>
+                </span>
+                <span>
+                  <input onClick={(e)=>Expense()} className='r-btn2' value={expense_radio} type="radio" name='type'/>
+                </span>
+              </div>
+              <div className="t-field">
+                <input value={text} onChange={(e)=>{setText(e.target.value)}} className='t-input1' type="text" placeholder='Enter Transaction Details'/>
+              </div>
             </div>
-            <div className="t-field">
-              <input value={text} onChange={(e)=>{setText(e.target.value)}} className='t-input1' type="text" placeholder='Enter Transaction Details'/>
+
+            <div className="t-field2">
+              <input value={amount} onChange={(e)=>{setAmount(e.target.value)}} className='t-input2' type="number" placeholder='Enter Transaction Amount'/>
             </div>
-          </div>
 
-          <div className="t-field2">
-            <input value={amount} onChange={(e)=>{setAmount(e.target.value)}} className='t-input2' type="number" placeholder='Enter Transaction Amount'/>
-          </div>
-
-          <div className="t-btn">
-            <button onClick={(e)=>{
-              btnClicked(e)
-            }} type='submit' className='add-btn'>Add Transaction</button>
-          </div>
+            <div className="t-btn">
+              <button className='add-btn'>Add Transaction</button>
+            </div>
+          </form>
     </>
   )
 }

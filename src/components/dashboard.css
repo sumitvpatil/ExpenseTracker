@@ -143,13 +143,11 @@
     flex-direction: column;
     max-height: 50vh;
 }
-
-.t-header{
-    /* background-color: red; */
-    flex:2;
+.addData{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    height: 80%;
 }
 
 .t-field1{
@@ -275,7 +273,7 @@
     /* background-color: red; */
     display: flex;
     justify-content: center;
-    min-height: 60px;
+    min-height: 20%;
     align-items: center;
 }
 .l-content{

@@ -74,9 +74,9 @@ export const Register = () => {
         })
       };
       fetch('https://et-server-r0g6.onrender.com/tracker/register',requestOptions).then((response)=>{
-        setIsloading(false);
         const status = (response.status);
         if(status===400){
+          setIsloading(false);
           setError1("User Already Exists");
           setError2("");
           setError3("");
@@ -85,6 +85,7 @@ export const Register = () => {
           setError6("");
         }
         else if(status===500){
+          setIsloading(false);
           setError1("User Already Exists");
           setError2("");
           setError3("");
@@ -104,6 +105,7 @@ export const Register = () => {
           };
           fetch('https://et-server-r0g6.onrender.com/tracker/login',requestOptions).then((response)=>{
               const status = (response.status);
+              setIsloading(false);
               if(status===400){
                   setError1("Invalid Username/Password");
                   setError2("");
