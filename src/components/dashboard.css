@@ -144,10 +144,11 @@
     max-height: 50vh;
 }
 .addData{
+    /* background-color: red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 80%;
+    height: 240px;
 }
 
 .t-field1{
@@ -360,6 +361,9 @@ li{
 }
 
 @media all and (max-width:650px){
+    .l-header{
+        min-height: 4em;
+    }
     .balance{
         margin: 10px 30px;
         min-height: 50vh;
@@ -369,7 +373,7 @@ li{
     }
     .add{
         margin:10px;
-        min-height: 45vh;;
+        min-height: 45vh;
     }
     .list{
         margin:10px;
@@ -391,5 +395,9 @@ li{
     }
     .b-expense{
         padding: 10px;
+    }
+    .addData{
+        display: flex;
+        flex-direction: column;
     }
 }
