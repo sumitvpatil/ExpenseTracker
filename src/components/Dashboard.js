@@ -19,7 +19,11 @@ export const Dashboard = () => {
     if(localStorage.getItem('token')===null){
       navigate('/');
     }
-    fetch('https://et-server-r0g6.onrender.com/tracker/getTransaction/'+id).then((response)=>response.json()).then((res)=>{
+    fetch('https://et-server-r0g6.onrender.com/tracker/getTransaction/'+id,{
+      headers:{
+        'auth-token':localStorage.getItem('token')
+      }
+    }).then((response)=>response.json()).then((res)=>{
       setIsloading(false);
       listTransaction(res.transactions);
     })

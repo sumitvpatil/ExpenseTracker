@@ -8,7 +8,10 @@ export const Dtransaction = ({transaction}) => {
     deleteTransaction(id);
     const requestOptions = {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'auth-token':localStorage.getItem('token')
+      }
     };
     fetch('https://et-server-r0g6.onrender.com/tracker/delete/'+id,requestOptions);
   }

@@ -31,7 +31,10 @@ export const Dadd = () => {
     }
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'auth-token':localStorage.getItem('token')
+      },
       body: JSON.stringify(newTransaction)
     };
     fetch('https://et-server-r0g6.onrender.com/tracker/addTransaction',requestOptions);
