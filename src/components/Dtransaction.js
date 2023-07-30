@@ -5,6 +5,7 @@ export const Dtransaction = ({transaction}) => {
   const sign = transaction.amount<0?'-':'+';
   const {deleteTransaction}=useContext(GlobalContext);
   function btnClicked(id){
+    console.log(id);
     deleteTransaction(id);
     const requestOptions = {
       method: 'DELETE',
@@ -17,7 +18,7 @@ export const Dtransaction = ({transaction}) => {
   }
   return (
     <li className={transaction.amount<0?'minus':'plus'}>
-        {transaction.details}<span>{sign}₹{Math.abs(transaction.amount)}</span><button className="delete-btn" onClick={()=>btnClicked(transaction.id)}>x</button>
+        {transaction.details}<span>{sign}₹{Math.abs(transaction.amount)}</span><button className="delete-btn" onClick={()=>btnClicked(transaction._id)}>x</button>
     </li>
   )
 }

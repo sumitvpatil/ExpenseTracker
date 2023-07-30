@@ -24,8 +24,7 @@ export const Dadd = () => {
       temp_id=transactions[0].id+1;
     }
     const newTransaction={
-      user_id:localStorage.getItem('id'),
-      id: temp_id,
+      userId:localStorage.getItem('id'),
       details:text,
       amount:amount*flag
     }
