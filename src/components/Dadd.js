@@ -25,6 +25,7 @@ export const Dadd = () => {
     }
     const newTransaction={
       userId:localStorage.getItem('id'),
+      _id: temp_id,
       details:text,
       amount:amount*flag
     }
