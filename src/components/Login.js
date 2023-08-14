@@ -1,12 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
+import { APIROUTES } from '../routes/routes';
 export const Login = () => {
     const navigate=useNavigate();
+    const handleLoginApi=(response)=>{
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+            { 
+                token:response.credential
+            })
+        };
+        fetch(APIROUTES.route+'/loginGoogle',requestOptions).then((response)=>{
+            setIsloading(false);
+            const status = (response.status);
+            if(status===400){
+                setError1("Invalid Username/Password");
+                setError2("");
+            }
+            else if(status===500){
+                setError1("Something went wrong");
+                setError2("");
+            }
+            else{
+                response.json().then((json)=>{
+                    localStorage.setItem('id',json.user.id);
+                    localStorage.setItem('name',json.user.name);
+                    localStorage.setItem('token',json.token);
+                    navigate('/dashboard');
+                })
+            }
+        });
+    }
     useEffect(()=>{
         localStorage.removeItem('id');
         localStorage.removeItem('name');
         localStorage.removeItem('token')
+    },[])
+
+    useEffect(()=>{
+        /* global google */
+        google.accounts.id.initialize({
+            client_id:"994239778897-qed7j3c4duls2vsten5eaqj5vsi13na0.apps.googleusercontent.com",
+            callback:handleLoginApi
+        })
+        google.accounts.id.renderButton(
+            document.getElementById("LoginButton"),
+            {
+                theme:"outline",
+                size:"large",
+                width:"300px",
+                type:"standard"
+            }
+        )
     },[])
     const [isLoading,setIsloading]=useState(false);
     const [email,setEmail] = useState("");
@@ -35,7 +83,7 @@ export const Login = () => {
                     password:password 
                 })
             };
-            fetch('https://et-server-r0g6.onrender.com/tracker/login',requestOptions).then((response)=>{
+            fetch(APIROUTES.route+'/login',requestOptions).then((response)=>{
                 setIsloading(false);
                 const status = (response.status);
                 if(status===400){
@@ -68,6 +116,9 @@ export const Login = () => {
             <div className="login-box">
                 <div className="login-header">
                     <h1>LOGIN</h1>
+                </div>
+                <div className="google_btn">
+                <div id="LoginButton"></div>
                 </div>
                 <div className="login-fields">
                     <div className='error-box'>

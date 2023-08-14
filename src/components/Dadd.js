@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import './dashboard.css';
 
 import {GlobalContext} from '../context/GlobalState';
+import { APIROUTES } from '../routes/routes';
 var income_radio=true;
 var expense_radio=false;
 export const Dadd = () => {
@@ -37,7 +38,7 @@ export const Dadd = () => {
       },
       body: JSON.stringify(newTransaction)
     };
-    fetch('https://et-server-r0g6.onrender.com/tracker/addTransaction',requestOptions);
+    fetch(APIROUTES.route+'/addTransaction',requestOptions);
     addTransaction(newTransaction);
     setText('');
     setAmount('');

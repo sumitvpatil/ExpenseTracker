@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState';
+import { APIROUTES } from '../routes/routes';
 
 export const Dtransaction = ({transaction}) => {
   const sign = transaction.amount<0?'-':'+';
@@ -14,7 +15,7 @@ export const Dtransaction = ({transaction}) => {
         'auth-token':localStorage.getItem('token')
       }
     };
-    fetch('https://et-server-r0g6.onrender.com/tracker/delete/'+id,requestOptions);
+    fetch(APIROUTES.route+'/delete/'+id,requestOptions);
   }
   return (
     <li className={transaction.amount<0?'minus':'plus'}>

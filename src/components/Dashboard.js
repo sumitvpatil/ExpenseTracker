@@ -8,6 +8,7 @@ import { Dlist } from './Dlist';
 import { GlobalContext } from '../context/GlobalState';
 import { useNavigate } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
+import { APIROUTES } from '../routes/routes';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export const Dashboard = () => {
     if(localStorage.getItem('token')===null){
       navigate('/');
     }
-    fetch('https://et-server-r0g6.onrender.com/tracker/getTransaction/'+id,{
+    fetch(APIROUTES.route+'/getTransaction/'+id,{
       headers:{
         'auth-token':localStorage.getItem('token')
       }

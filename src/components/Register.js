@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
+import { APIROUTES } from '../routes/routes';
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ export const Register = () => {
             password:password 
         })
       };
-      fetch('https://et-server-r0g6.onrender.com/tracker/register',requestOptions).then((response)=>{
+      fetch(APIROUTES.route+'/register',requestOptions).then((response)=>{
         const status = (response.status);
         if(status===400){
           setIsloading(false);
@@ -103,7 +104,7 @@ export const Register = () => {
                 password:password 
             })
           };
-          fetch('https://et-server-r0g6.onrender.com/tracker/login',requestOptions).then((response)=>{
+          fetch(APIROUTES.route+'/login',requestOptions).then((response)=>{
               const status = (response.status);
               setIsloading(false);
               if(status===400){
