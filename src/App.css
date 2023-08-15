@@ -200,3 +200,12 @@
     width:80vw;
   }
 }
+
+@media all and (min-width:450px) and (max-width:850px){
+  .main-div{
+    flex-direction: column;
+  }
+  .login-box{
+    width:80vw;
+  }
+}
