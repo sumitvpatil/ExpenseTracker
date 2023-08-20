@@ -62,6 +62,10 @@ const Navbar = (props) => {
     navigate('/');
   }
   const handleSettingsClick=()=>{
+    setUserName(user.name);
+    setUserEmail(user.email);
+    setUserContact(user.contact);
+    setUserCurrency(user.currency)
     setSettingsFlag(true);
     setProfileFlag(false);
   }

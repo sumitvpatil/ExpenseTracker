@@ -11,7 +11,6 @@ const Balance = () => {
     const {transactions} = useContext(GlobalContext);
     const {user} = useContext(GlobalContext);
     const {userData} =useContext(GlobalContext);
-    console.log(transactions);
     const filteredList=transactions.slice(0,6);
     const [isLoading,setIsloading]=useState(false);
     const id = localStorage.getItem('id');
