@@ -15,6 +15,16 @@ const AppReducer= (state,action)=>{
                 ...state,
                 transactions:action.payload
             }
+        case 'USER_DATA':
+            return {
+                ...state,
+                user:action.payload
+            }
+        case 'UPDATE_ACTIVE':
+            return {
+                ...state,
+                active:action.payload
+            }
         default:
             return state
     }

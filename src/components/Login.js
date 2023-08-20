@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
 import { APIROUTES } from '../routes/routes';
+import { GlobalContext } from '../context/GlobalState';
 export const Login = () => {
     const navigate=useNavigate();
-    const handleLoginApi=(response)=>{
+    const {userData} = useContext(GlobalContext);
+    const handleLoginApi=useCallback((response)=>{
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -26,6 +28,7 @@ export const Login = () => {
             }
             else{
                 response.json().then((json)=>{
+                    userData(json.user);
                     localStorage.setItem('id',json.user.id);
                     localStorage.setItem('name',json.user.name);
                     localStorage.setItem('token',json.token);
@@ -33,7 +36,7 @@ export const Login = () => {
                 })
             }
         });
-    }
+    })
     useEffect(()=>{
         localStorage.removeItem('id');
         localStorage.removeItem('name');
@@ -55,7 +58,7 @@ export const Login = () => {
                 type:"standard"
             }
         )
-    },[])
+    },[handleLoginApi])
     const [isLoading,setIsloading]=useState(false);
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");

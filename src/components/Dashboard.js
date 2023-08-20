@@ -13,6 +13,7 @@ import { APIROUTES } from '../routes/routes';
 export const Dashboard = () => {
   const navigate = useNavigate();
   const [isLoading,setIsloading]=useState(false);
+  const {userData} = useContext(GlobalContext);
   const {listTransaction} = useContext(GlobalContext);
   const id = localStorage.getItem('id');
   useEffect(()=>{
@@ -27,6 +28,15 @@ export const Dashboard = () => {
     }).then((response)=>response.json()).then((res)=>{
       setIsloading(false);
       listTransaction(res.transactions);
+    })
+    console.log("HERE");
+    fetch(APIROUTES.route+'/getUserById/'+id,{
+      headers:{
+        'auth-token':localStorage.getItem('token')
+      }
+    }).then((response)=>response.json()).then((res)=>{
+      setIsloading(false);
+      userData(res.user);
     })
   },[])
   return (

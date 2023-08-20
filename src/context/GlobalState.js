@@ -2,8 +2,9 @@ import React,{createContext,useReducer} from "react";
 import AppReducer from './AppReducer';
 
 const initialstate={
-    transactions:[
-    ]
+    transactions:[],
+    user:{},
+    active:true
 }
 
 export const GlobalContext = createContext(initialstate);
@@ -32,12 +33,30 @@ export const GlobalProvider = ({children})=>{
         })
     }
 
+    function userData(user){
+        dispatch({
+            type:'USER_DATA',
+            payload:user
+        })
+    }
+
+    function updateActive(flag){
+        dispatch({
+            type:"UPDATE_ACTIVE",
+            payload:flag
+        })
+    }
+
     return(
         <GlobalContext.Provider value={{
             transactions:state.transactions,
+            user:state.user,
+            active:state.active,
             deleteTransaction,
             addTransaction,
-            listTransaction
+            listTransaction,
+            userData,
+            updateActive
         }}>
             {children}
         </GlobalContext.Provider>

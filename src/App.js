@@ -7,6 +7,7 @@ import { Register } from './components/Register';
 import { Dashboard } from './components/Dashboard';
 import { GlobalProvider } from './context/GlobalState';
 import UserHome from './v2/UserHome';
+import Expense from './v2/Expense';
 
 
 
@@ -17,8 +18,9 @@ function App() {
         <Route path='/' element={<Homepage/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
-        {/* <Route path='/dashboard' element={<Dashboard/>}></Route> */}
+        <Route path='/dashboard1' element={<Dashboard/>}></Route>
         <Route path='/dashboard' element={<UserHome/>}></Route>
+        <Route path='/expense' element={<Expense/>}></Route>
       </Routes>
     </GlobalProvider>
   );

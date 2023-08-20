@@ -156,8 +156,15 @@
   flex:1;
 }
 
+.field1>input{
+  outline: none;
+}
+
 .field2{
   flex:1;
+}
+.field2>input{
+  outline:none;
 }
 
 .login-buttons{
