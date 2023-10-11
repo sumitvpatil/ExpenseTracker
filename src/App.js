@@ -18,9 +18,9 @@ function App() {
         <Route path='/' element={<Homepage/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
-        <Route path='/dashboard1' element={<Dashboard/>}></Route>
-        <Route path='/dashboard' element={<UserHome/>}></Route>
-        <Route path='/expense' element={<Expense/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+        {/* <Route path='/dashboard' element={<UserHome/>}></Route>
+        <Route path='/expense' element={<Expense/>}></Route> */}
       </Routes>
     </GlobalProvider>
   );
